@@ -9,7 +9,12 @@ import (
 
 func main() {
 	// 连接到服务端
-	conn, err := net.Dial("tcp", "localhost:8080")
+	addr := "localhost:8080"
+	if len(os.Args) > 1 {
+		addr = os.Args[1]
+	}
+	// 连接到服务端
+	conn, err := net.Dial("tcp", addr)
 	if err != nil {
 		fmt.Println("Error connecting to server:", err)
 		os.Exit(1)
